@@ -1,0 +1,13 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: python-app-binding
+  namespace: nguyentaihieu004-dev
+
+spec:
+  params:
+    - name: gitrevision
+      value: $(body.ref)
+
+    - name: gitrepositoryurl
+      value: $(body.repository.clone_url)

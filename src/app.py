@@ -22,12 +22,6 @@ HTML_TEMPLATE = """
         <h1>🚀 OpenShift Cloud-Native Pipeline Success!</h1>
         <p>Ứng dụng Python Flask đã được triển khai hoàn toàn tự động bằng <strong>Tekton Pipelines</strong>.</p>
         <p>Trạng thái hệ thống: <span class="status">RUNNING (User: Non-Root)</span></p>
-        
-        <div class="info">
-            <strong>[Hệ thống Kiểm tra cấu hình Bảo mật]:</strong><br>
-            • Môi trường: {{ app_env }}<br>
-            • Kết nối Database: {{ db_status }}
-        </div>
     </div>
 </body>
 </html>

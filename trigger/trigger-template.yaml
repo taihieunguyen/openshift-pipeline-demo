@@ -1,0 +1,45 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: python-app-template
+  namespace: nguyentaihieu004-dev
+
+spec:
+  params:
+    - name: gitrevision
+    - name: gitrepositoryurl
+
+  resourcetemplates:
+
+    - apiVersion: tekton.dev/v1
+      kind: PipelineRun
+
+      metadata:
+        generateName: python-dockerhub-pipeline-
+
+      spec:
+
+        pipelineRef:
+          name: python-dockerhub-pipeline
+
+        taskRunTemplate:
+          serviceAccountName: pipeline
+
+        params:
+
+          - name: IMAGE_NAME
+            value: docker.io/nguyentaihieu/python-secops-app:latest
+
+          - name: GIT_REPO
+            value: $(tt.params.gitrepositoryurl)
+
+          - name: GIT_REVISION
+            value: main
+
+        workspaces:
+
+          - name: workspace
+
+            persistentVolumeClaim:
+
+              claimName: pvc-b3147f0a9e
